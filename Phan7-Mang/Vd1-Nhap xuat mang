@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+
+void nhapmang(int, int);
+void nhapmang(int A[], int &n)
+{
+	cout << "Nhap so phan tu cua mang: ";
+	cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "A[" << i << "] = ";
+		cin >> A[i];
+	}
+}
+
+void xuatmang(int, int);
+void xuatmang(int A[], int n)
+{
+	cout << "Gia tri cac phan tu la: ";
+	for (int i = 0; i < n; i++)
+	{
+		cout << "A[" << i << "] = " << A[i];
+	}
+}
+
+
+void main()
+{
+	int A[100];
+	nhapmang(A[100], 1);
+	xuatmang(A[100], 1);
+}
