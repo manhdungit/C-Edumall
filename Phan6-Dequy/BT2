@@ -1,0 +1,12 @@
+float tinhmu(float coso, int mu)
+{
+	if (coso == 0 && mu != 0) return 0;
+	if (coso != 0 && mu == 0) return 1;
+	if (coso == 0 && mu == 0) cout << "Vo dinh";
+	else
+	{
+
+		if (mu == 1) return coso;
+		else return coso*tinhmu(coso, mu - 1);
+	}
+}
