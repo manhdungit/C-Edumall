@@ -2,8 +2,7 @@
 using namespace std;
 
 
-void nhapmang(int, int);
-void nhapmang(int A[], int &n)
+void nhapmang(int *A, int &n)
 {
 	cout << "Nhap so phan tu cua mang: ";
 	cin >> n;
@@ -14,20 +13,22 @@ void nhapmang(int A[], int &n)
 	}
 }
 
-void xuatmang(int, int);
-void xuatmang(int A[], int n)
+void xuatmang(int *A, int n)
 {
-	cout << "Gia tri cac phan tu la: ";
+	cout << "Gia tri cac phan tu la: "<<endl;
 	for (int i = 0; i < n; i++)
 	{
-		cout << "A[" << i << "] = " << A[i];
+		cout << "A[" << i << "] = " << A[i]<<endl;
 	}
 }
 
 
 void main()
 {
-	int A[100];
-	nhapmang(A[100], 1);
-	xuatmang(A[100], 1);
+	int n = 1;
+	int *A;
+	A = new int[100];
+	nhapmang(A, n);
+	xuatmang(A, n);
+	system("pause");
 }
