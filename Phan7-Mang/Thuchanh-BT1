@@ -1,0 +1,70 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+int solanxuathiencuaphantu(int i, int *A, int n)
+{
+	int dem = 0;
+	for (int j = 0; j < n; j++)
+		if (*(A + j) == *(A + i)) dem++;
+	return dem;
+}
+
+
+
+int main()
+{
+	int *A;
+	A = new int;
+	cout << "Nhap so phan tu: ";
+	int n;
+	cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "A[" << i << "] = ";
+		cin >> A[i];
+	}
+	int nomax = 0;			/*Bien chua so lan xuat hien lon nhat cua cac phan tu trong mang*/
+	for (int i = 0; i < n; i++)
+	{
+		if (solanxuathiencuaphantu(*(A + i), A, n) >= nomax)
+		{
+			nomax = solanxuathiencuaphantu(*(A + i), A, n);
+		}
+	}
+	if (nomax == 1)
+	{
+		cout << "Moi phan tu chi xuat hien mot lan";
+		return 0;
+	}
+	int max[10] = { 0,0,0,0,0,0,0,0,0,0 };	/*Mang ghi lai gia tri cua cac phan tu co cung so lan xuat hien lon nhat*/
+	bool maxxet[10] = { 0,0,0,0,0,0,0,0,0,0 };
+	int tempcount = -1;
+
+	for (int i = 0; i < n; i++)
+	{
+		/*Vi tri cua phan tu gia tri lon nhat trong mang max*/
+		if (solanxuathiencuaphantu(i, A, n) == nomax)
+		{
+			for (int j = 0; j < 10; j++)
+			{
+				if (max[j] == A[i])
+				{
+					goto label1;
+				}
+			}
+			tempcount++;
+			max[tempcount] = A[i];
+			maxxet[tempcount] = 1;
+		}
+	label1: continue;
+	}
+
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (maxxet!=0)	cout << "Phan tu xuat hien nhieu nhat la: " << max[i] << endl;
+	}
+	_getch();
+	return 0;
+}
