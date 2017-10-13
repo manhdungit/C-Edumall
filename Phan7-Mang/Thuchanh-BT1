@@ -1,8 +1,9 @@
 #include <iostream>
 #include <conio.h>
+#include"Header.h"
 using namespace std;
-
-int solanxuathiencuaphantu(int i, int *A, int n)
+/*Co su dung Mylib*/
+int n_appearing(int i, int *A, int n)
 {
 	int dem = 0;
 	for (int j = 0; j < n; j++)
@@ -10,61 +11,57 @@ int solanxuathiencuaphantu(int i, int *A, int n)
 	return dem;
 }
 
-
+int zero_appearing(int *A, int n)
+{
+	int dem = 0;
+	for (int i = 0; i < n; i++)
+		if (A[i] == 0) dem++;
+	return dem;
+}
 
 int main()
 {
 	int *A;
-	A = new int;
-	cout << "Nhap so phan tu: ";
+	cout << "Nhap so phan tu cua mang: ";
 	int n;
 	cin >> n;
+	A = new int[n];
+	nhapmang(A, n);
+	int max_n_appearing = 0;
 	for (int i = 0; i < n; i++)
 	{
-		cout << "A[" << i << "] = ";
-		cin >> A[i];
-	}
-	int nomax = 0;			/*Bien chua so lan xuat hien lon nhat cua cac phan tu trong mang*/
-	for (int i = 0; i < n; i++)
-	{
-		if (solanxuathiencuaphantu(*(A + i), A, n) >= nomax)
+		if (n_appearing(i, A, n) >= max_n_appearing)
 		{
-			nomax = solanxuathiencuaphantu(*(A + i), A, n);
+			max_n_appearing = n_appearing(i, A, n);
 		}
 	}
-	if (nomax == 1)
+	if (max_n_appearing == 1)
 	{
 		cout << "Moi phan tu chi xuat hien mot lan";
+		system("pause");
 		return 0;
 	}
-	int max[10] = { 0,0,0,0,0,0,0,0,0,0 };	/*Mang ghi lai gia tri cua cac phan tu co cung so lan xuat hien lon nhat*/
-	bool maxxet[10] = { 0,0,0,0,0,0,0,0,0,0 };
-	int tempcount = -1;
-
+	if (max_n_appearing == zero_appearing(A, n)) cout << "Gia tri xuat hien nhieu nhat la: 0"<<endl;
+	int N_max_n_appearing = 0;
+	int max_appearing[10] = {0,0,0,0,0,0,0,0,0,0}; //Mang luu cac phan tu xuat hien nhieu nhat
 	for (int i = 0; i < n; i++)
 	{
-		/*Vi tri cua phan tu gia tri lon nhat trong mang max*/
-		if (solanxuathiencuaphantu(i, A, n) == nomax)
+		if (n_appearing(i, A, n) == max_n_appearing)
 		{
 			for (int j = 0; j < 10; j++)
 			{
-				if (max[j] == A[i])
-				{
-					goto label1;
-				}
+				if (A[i] == max_appearing[j]) goto label1;
 			}
-			tempcount++;
-			max[tempcount] = A[i];
-			maxxet[tempcount] = 1;
+			N_max_n_appearing++;
+			max_appearing[N_max_n_appearing - 1] = A[i];
 		}
 	label1: continue;
 	}
-
-
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < N_max_n_appearing; i++)
 	{
-		if (maxxet!=0)	cout << "Phan tu xuat hien nhieu nhat la: " << max[i] << endl;
+		cout << "Gia tri xuat hien nhieu nhat la:" << " " << max_appearing[i] << " "<<endl;
 	}
-	_getch();
+	delete A;
+	system("pause");
 	return 0;
 }
