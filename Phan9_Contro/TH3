@@ -1,0 +1,42 @@
+#include <iostream>
+#include "Header.h"
+using namespace std;
+
+int main()
+{
+	int *A;
+	cout << "Nhap so phan tu: ";
+	int n;
+	cin >> n;
+	A = new int[n];
+	nhapmang(A, n);
+
+	phanmangchanle(A, n);
+	
+	int demle = 0;
+	for (int i = 0; i < n; i++)
+		if (A[i] % 2 != 0) demle++;
+	//Sap xep le
+
+	for (int i = 0; i < demle; i++)
+	{
+		for (int j = i + 1; j < demle; j++)
+		{
+			if (A[i] > A[j]) traodoigiatri(A[i], A[j]);
+		}
+	}
+
+	//Sap xep chan
+
+
+	for (int i = demle+1; i < n; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (A[i] < A[j]) traodoigiatri(A[i], A[j]);
+		}
+	}
+	xuatmang(A, n);
+	delete A;
+	system("pause");
+}
