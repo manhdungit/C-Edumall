@@ -1,0 +1,57 @@
+#include <iostream>
+#include <iomanip>
+#include "Header.h"
+using namespace std;
+
+int main()
+{
+	//Khoi lenh nhap mang.
+	int *A;
+	cout << "Nhap so phan tu cua mang: ";
+	int n;
+	cin >> n;
+	A = new int[n];
+	nhapmang(A, n);
+	
+	//So le nho nhat
+	int minle = 30001;
+	for (int i = 0; i < n; i++)
+	{
+		if (*(A+i) % 2 == 0) continue;
+		else
+		{
+			if (*(A + i) < minle) minle = *(A + i);
+		}
+	}
+	//So chan lon nhat
+	int maxchan = -30000;
+	for (int i = 0; i < n; i++)
+	{
+		if (*(A+i) % 2 != 0) continue;
+		else
+		{
+			if (*(A + i) > maxchan) maxchan = *(A + i);
+		}
+	}
+	//Xuat chuong trinh
+	if (minle !=30000)
+	{
+		cout << "\n So le nho nhat trong mang la: "<<minle;
+	}
+	else
+	{
+		cout << "\n Mang may nhap eo co so le";
+	}
+
+	if (maxchan != -30000)
+	{
+		cout << "\n So chan lon nhat trong mang la: "<<maxchan;
+	}
+	else
+	{
+		cout << "\n Mang may nhap eo co so chan";
+	}
+	cout << "\n";
+	cout << n;
+	system("pause");
+}
