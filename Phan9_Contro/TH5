@@ -1,0 +1,21 @@
+#include <iostream>
+#include "Header.h"
+using namespace std;
+
+
+
+void main()
+{
+	//Nhap ma tran
+	int *mat;
+	cout << "Nhap kich co nxn cua mat tran: ";
+	int n;
+	cin >> n;
+	mat = new int[n*n];
+	cin_mat(mat, n);
+	//Chuyen vi ma tran
+	mat_t(mat, n);
+	//Xuat ma tran
+	cout_mat(mat, n);
+	system("pause");
+}
